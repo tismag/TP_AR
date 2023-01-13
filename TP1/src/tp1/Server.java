@@ -8,13 +8,17 @@ public class Server {
 	public Server() {}
 	
 	public static void main(String[] args) throws IOException{
-		int port = 4320;
+		int port = 9999;
 		int backlog = 3;
 		
 		ServerSocket listenSoc = new ServerSocket(port, backlog);
+		
 		while (true) {
-		Socket soc = listenSoc.accept();
-		OutputStream os = soc.getOutputStream();
+			Socket soc = listenSoc.accept();
+			DataInputStream dis = (DataInputStream) soc.getInputStream();
+			String name = dis.readUTF();
+			DataOutputStream dos = (DataOutputStream) soc.getOutputStream();
+			dos.writeUTF("Hello"+name);
 		}
 	}
 }

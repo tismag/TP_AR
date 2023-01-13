@@ -8,13 +8,18 @@ public class Client {
 	public Client() {}
 	
 	public static void main(String[] args) throws IOException{
-		String serverHost = "goedel.imag.fr";
-		int serverPort = 4320;
+		String serverHost = "localhost";
+		int serverPort = 9999;
 		
 		Socket soc = new Socket(serverHost,serverPort);
-		// receive the date from server
-		DataInputStream is = (DataInputStream) soc.getInputStream();
-		byte[] b = new byte[100];
+		
+		DataOutputStream dos = (DataOutputStream) soc.getOutputStream();
+		dos.writeUTF("Daniel");
+		
+		DataInputStream dis = (DataInputStream) soc.getInputStream();
+		String response = dis.readUTF();
+		
+		System.out.println(response);
 		
 		soc.close();
 	}
