@@ -13,10 +13,10 @@ public class Client {
 		
 		Socket soc = new Socket(serverHost,serverPort);
 		
-		DataOutputStream dos = (DataOutputStream) soc.getOutputStream();
-		dos.writeUTF("Daniel");
+		DataOutputStream dos = new DataOutputStream(soc.getOutputStream());
+		dos.writeUTF("Client");
 		
-		DataInputStream dis = (DataInputStream) soc.getInputStream();
+		DataInputStream dis = new DataInputStream(soc.getInputStream());
 		String response = dis.readUTF();
 		
 		System.out.println(response);

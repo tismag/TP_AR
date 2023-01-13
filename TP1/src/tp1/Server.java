@@ -15,10 +15,10 @@ public class Server {
 		
 		while (true) {
 			Socket soc = listenSoc.accept();
-			DataInputStream dis = (DataInputStream) soc.getInputStream();
+			DataInputStream dis = new DataInputStream(soc.getInputStream());
 			String name = dis.readUTF();
-			DataOutputStream dos = (DataOutputStream) soc.getOutputStream();
-			dos.writeUTF("Hello"+name);
+			DataOutputStream dos = new DataOutputStream(soc.getOutputStream());
+			dos.writeUTF("Hello "+name+" !");
 		}
 	}
 }
